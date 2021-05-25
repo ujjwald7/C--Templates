@@ -1,4 +1,4 @@
-struct DSU{
+struct dsu{
     vector<int>par;
     vector<int>rank;
     int comps;
@@ -11,10 +11,14 @@ struct DSU{
         }
         comps=n;
     }
+
+
     int get_superparent(int x){
         if(x==par[x]) return par[x];
         return par[x]=get_superparent(par[x]);
     }
+
+
     void unite(int x,int y)
     {
         int super_par_a=get_superparent(x);
@@ -29,8 +33,11 @@ struct DSU{
                 par[super_par_b]=super_par_a;
                 rank[super_par_a]+=rank[super_par_b];
             }
+            comps--;
         }
     }
+
+
     bool has_cycle(int x,int y){
         int super_par_a=get_superparent(x);
         int super_par_b=get_superparent(y);
